@@ -2,19 +2,30 @@ library(shiny)
 library(httr)
 library(jsonlite)
 library(leaflet)
-library(sf)  # Load the sf package for spatial data handling
+library(sf)             
 
-# Define UI for the application
 ui <- fluidPage(
   titlePanel("Real-time Carpark Availability"),
-  sidebarLayout(
-    sidebarPanel(
-      helpText("This application displays real-time car park availability on an interactive map.")
-    ),
-    mainPanel(
-      leafletOutput("carparkMap"),  # Output for the leaflet map
-      textOutput("updateTime")
-    )
+   tabsetPanel(
+    tabPanel("Map",
+             sidebarLayout(
+               sidebarPanel(
+                 helpText("This application displays real-time car park availability on an interactive map.")
+               ),
+               mainPanel(
+                 leafletOutput("carparkMap"),
+                 textOutput("updateTime")
+               )
+             )),
+    tabPanel("Visualizations",
+             sidebarLayout(
+               sidebarPanel(
+                 helpText("Visualizations of car park data.")
+               ),
+               mainPanel(
+                 # Add plots here
+               )
+             ))
   )
 )
 
